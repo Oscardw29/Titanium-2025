@@ -275,6 +275,8 @@ main {
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
+.task-item.expired { background:#fef2f2; border: 2px solid #fecaca; }
+.task-item.due-today { background:#fff7ed; border: 2px solid #fed7aa; }
 
 .task-item span {
     word-break: break-word;
@@ -703,6 +705,8 @@ header[role="banner"] {
 [data-theme="dark"] .container h1{ border-bottom-color: rgba(148,163,184,0.15); color:#e5e7eb; }
 [data-theme="dark"] .task-list { background: #0b1220; }
 [data-theme="dark"] .task-item { background: #0f172a; color:#e5e7eb; box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
+[data-theme="dark"] .task-item.expired { background:#3f1d1d; border-color:#7f1d1d; }
+[data-theme="dark"] .task-item.due-today { background:#3b2a1a; border-color:#8b5e34; }
 [data-theme="dark"] .task-btn{ border-color: rgba(148,163,184,0.18); color:#cbd5e1; }
 [data-theme="dark"] .day{ background:#1f2937; color:#e5e7eb; border-color: rgba(148,163,184,0.08); }
 [data-theme="dark"] .day:hover{ background:#243245; }

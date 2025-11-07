@@ -56,9 +56,19 @@ function showTasks() {
     tasksContainer.innerHTML = '';
 
     if (tasks[key]) {
+    // Check if selected day is in the past
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const selectedDayNormalized = new Date(selectedDay);
+    selectedDayNormalized.setHours(0, 0, 0, 0);
+    const isExpired = selectedDayNormalized < today;
+
     tasks[key].forEach((t, index) => {
         const div = document.createElement('div');
         div.className = 'task-item fadeIn';
+        if (isExpired && !t.done) {
+            div.classList.add('expired');
+        }
         div.innerHTML = `<span class="${t.done ? 'completed' : ''}">${t.text}</span>
                         <div>
                             <button class="task-btn check" onclick="toggleTask('${key}', ${index})" title="Marcar como hecha">✔</button>

@@ -164,8 +164,8 @@ function scheduleNotification(reminder) {
             }
             
             // Mostrar la notificación
-            showSystemNotification(reminder.title, notificationMessage, { 
-                icon: 'TT__1_-removebg-preview.png',
+                showSystemNotification(reminder.title, notificationMessage, { 
+                    icon: 'assets/TT__1_-removebg-preview.png',
                 duration: 8000, 
                 tag: 'reminder-' + reminder.id 
             });
@@ -200,7 +200,7 @@ function addReminder() {
     const title = document.getElementById('reminderTitle').value.trim();
     const message = document.getElementById('reminderMessage').value.trim();
     const time = document.getElementById('reminderTime').value;
-    const initialNotification = parseInt(document.getElementById('initialNotification').value);
+    const initialNotification = 1; // Siempre 1 minuto
     const repeatInterval = parseInt(document.getElementById('repeatInterval').value);
 
     if (!title || !message || !time) {
@@ -214,6 +214,15 @@ function addReminder() {
     if (isNaN(selectedDateTime.getTime()) || selectedDateTime <= now) {
         showNotification('Error', 'No puedes agregar recordatorios en fechas pasadas.', { duration: 3500 });
         return;
+    }
+
+    // Validar que el intervalo de repetición no sea mayor al tiempo hasta la fecha
+    if (repeatInterval > 0) {
+        const timeDiffHours = (selectedDateTime.getTime() - now.getTime()) / (1000 * 60 * 60);
+        if (repeatInterval > timeDiffHours) {
+            showNotification('Error', 'El intervalo de repetición no puede ser mayor al tiempo hasta la fecha seleccionada.', { duration: 3500 });
+            return;
+        }
     }
 
     // Primero agregar a la agenda para poder obtener el índice correcto
@@ -336,6 +345,29 @@ function formatDateTime(dateString) {
     });
 }
 
+// Utils
+function isSameDay(a, b){
+    return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
+}
+
+function getRepeatLabel(hours){
+    if(!hours || hours<=0) return '';
+    switch(Number(hours)){
+        case 8: return '8 horas';
+        case 24: return '24 horas';
+        case 168: return '1 semana';
+        default: return `${hours} horas`;
+    }
+}
+
+function getReminderStatus(reminder){
+    const now = new Date();
+    const t = new Date(reminder.time);
+    if (t.getTime() <= now.getTime()) return 'expired';
+    if (isSameDay(t, now)) return 'due-today';
+    return 'upcoming';
+}
+
 function formatDate(dateString) {
     const [year, month, day] = dateString.split('-');
     return new Date(year, month - 1, day).toLocaleDateString('es-ES', {
@@ -399,7 +431,6 @@ function editReminder(id) {
     document.getElementById('reminderTitle').value = reminder.title;
     document.getElementById('reminderMessage').value = reminder.message;
     document.getElementById('reminderTime').value = reminder.time.slice(0, 16);
-    document.getElementById('initialNotification').value = reminder.initialNotification || 1;
     document.getElementById('repeatInterval').value = reminder.repeatInterval;
     
     deleteReminder(id);
@@ -417,25 +448,43 @@ function renderReminders() {
     }
 
     sortedReminders.forEach(reminder => {
+        const status = getReminderStatus(reminder);
+        const repeatText = getRepeatLabel(reminder.repeatInterval);
         const div = document.createElement('div');
         div.className = 'reminder-item';
+        if (status === 'expired') div.classList.add('expired');
+        else if (status === 'due-today') div.classList.add('due-today');
         div.innerHTML = `
             <div class="reminder-info">
                 <div class="reminder-title">${reminder.title}</div>
                 <div class="reminder-message">${reminder.message}</div>
                 <div class="reminder-time">${formatDateTime(reminder.time)}</div>
-                ${reminder.repeatInterval ? 
-                    `<div class="reminder-badge repeat">Se repite cada ${reminder.repeatInterval} horas</div>` : ''}
+                    ${repeatText ? 
+                        `<div class="reminder-badge repeat">Se repite cada ${repeatText}</div>` : ''}
+                    ${status === 'expired' ? `<div class="reminder-badge expired">Vencido</div>` : ''}
+                    ${status === 'due-today' ? `<div class="reminder-badge due">Para hoy</div>` : ''}
                 ${reminder.fromAgenda ? 
                     `<div class="reminder-badge task">Desde Agenda</div>` : ''}
             </div>
             <div class="reminder-actions">
+                    <button onclick="testReminder(${reminder.id})" class="test-btn">Probar</button>
                 <button onclick="deleteReminder(${reminder.id})" class="delete-btn">Eliminar</button>
             </div>
         `;
         list.appendChild(div);
     });
 }
+
+// Botón de prueba por recordatorio (global para onclick)
+window.testReminder = function(id){
+    const r = reminders.find(x=>x.id===id);
+    if(!r) return;
+    showSystemNotification(`Prueba: ${r.title}`, r.message || 'Notificación de prueba', {
+        icon: 'assets/TT__1_-removebg-preview.png',
+        duration: 5000,
+        tag: 'reminder-test-' + id
+    });
+};
 
 // Inicialización
 window.addEventListener('load', () => {
@@ -474,4 +523,6 @@ window.addEventListener('load', () => {
     
     // Revisar tareas nuevas cada minuto
     setInterval(checkTasks, 60000);
+        // Refrescar estado visual de recordatorios (expired / due-today) cada minuto
+        setInterval(renderReminders, 60000);
 });

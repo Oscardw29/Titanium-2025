@@ -29,6 +29,19 @@ function buildList(){
     // marcar estado en data-attribute para estilos
     row.setAttribute('data-status', r.status);
     if(r.status === 'completado') row.classList.add('completed');
+    
+    // Check if task is expired or due today
+    const [year, month, day] = r.date.split('-');
+    const taskDate = new Date(year, month - 1, day);
+    taskDate.setHours(0, 0, 0, 0);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    if (taskDate < today && r.status !== 'completado') {
+        row.classList.add('expired');
+    } else if (taskDate.getTime() === today.getTime() && r.status !== 'completado') {
+        row.classList.add('due-today');
+    }
     const date = document.createElement('div'); date.className='task-date'; date.textContent = formatDate(r.date);
     const text = document.createElement('div'); text.className='task-text'; text.textContent = r.text;
     const status = document.createElement('div');

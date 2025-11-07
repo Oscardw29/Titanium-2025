@@ -76,6 +76,8 @@ h1 {
     box-shadow: 0 4px 8px rgba(15,23,42,0.03);
     transition: transform 0.18s, box-shadow 0.18s;
 }
+.reminder-item.expired { background:#fef2f2; border-color:#fecaca; }
+.reminder-item.due-today { background:#fff7ed; border-color:#fed7aa; }
 .reminder-item:hover { transform: translateY(-3px); box-shadow: 0 10px 18px rgba(15,23,42,0.06); }
 .reminder-info { flex:1; padding: 16px; border-bottom: 1px solid rgba(15,23,42,0.04); }
 .reminder-title { font-weight:600; margin-bottom:8px; color:#0f172a; font-size:1.05em }
@@ -110,6 +112,8 @@ h1 {
 .reminder-badge { display:inline-block; padding:4px 8px; border-radius:999px; font-size:0.85em; font-weight:500; margin-top:8px }
 .reminder-badge.repeat { background:#f0fdf4; color:#166534; border:1px solid #bbf7d0 }
 .reminder-badge.task { background:#eff6ff; color:#1e40af; border:1px solid #bfdbfe }
+.reminder-badge.expired { background:#fee2e2; color:#991b1b; border:1px solid #fecaca; }
+.reminder-badge.due { background:#ffedd5; color:#9a3412; border:1px solid #fed7aa; }
 
 .button-primary { background:#3b82f6; color:white; border:none; padding:10px 18px; border-radius:8px; cursor:pointer; font-weight:600; transition: background 0.2s, transform 0.15s; }
 .button-primary:hover { background:#2563eb; transform: translateY(-1px); }
@@ -206,6 +210,8 @@ h1 {
 [data-theme="dark"] .form-group textarea:focus,
 [data-theme="dark"] .reminder-form select:focus { border-color:#3b82f6; box-shadow:0 0 0 3px rgba(59,130,246,0.25); }
 [data-theme="dark"] .reminder-item { background:#0f172a; border-color:rgba(148,163,184,0.15); box-shadow:0 4px 10px rgba(0,0,0,0.5); }
+[data-theme="dark"] .reminder-item.expired { background:#3f1d1d; border-color:#7f1d1d; }
+[data-theme="dark"] .reminder-item.due-today { background:#3b2a1a; border-color:#8b5e34; }
 [data-theme="dark"] .reminder-item:hover { box-shadow:0 10px 24px rgba(0,0,0,0.6); }
 [data-theme="dark"] .reminder-info { border-bottom-color:rgba(148,163,184,0.12); }
 [data-theme="dark"] .reminder-title { color:#e5e7eb; }
@@ -218,5 +224,7 @@ h1 {
 [data-theme="dark"] .reminder-actions .edit-btn:hover { background:#0369a1; }
 [data-theme="dark"] .reminder-badge.repeat { background:#064e3b; color:#ecfdf5; border-color:#10b981; }
 [data-theme="dark"] .reminder-badge.task { background:#1e3a8a; color:#bfdbfe; border-color:#3b82f6; }
+[data-theme="dark"] .reminder-badge.expired { background:#7f1d1d; color:#fecaca; border-color:#ef4444; }
+[data-theme="dark"] .reminder-badge.due { background:#7c3f18; color:#fed7aa; border-color:#f59e0b; }
 [data-theme="dark"] .button-primary { background:#3b82f6; }
 [data-theme="dark"] .button-primary:hover { background:#2563eb; }

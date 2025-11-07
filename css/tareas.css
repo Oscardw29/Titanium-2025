@@ -81,6 +81,8 @@ white-space: nowrap;
 .task-row[data-status="en proceso"]{ border-left: 6px solid rgba(99,102,241,0.18);}
 .task-row[data-status="completado"]{ border-left: 6px solid rgba(16,185,129,0.18); opacity:0.9 }
 .task-row.completed .task-text{ text-decoration: line-through; color:#6b7280 }
+.task-row.expired { background:#fef2f2; border: 2px solid #fecaca; }
+.task-row.due-today { background:#fff7ed; border: 2px solid #fed7aa; }
 .actions { 
 display: flex;
 gap: 8px;
@@ -321,6 +323,8 @@ box-shadow: 0 4px 15px rgba(59,130,246,0.3);
 [data-theme="dark"] h1 { color:#e5e7eb; }
 [data-theme="dark"] .content { background:#111827; }
 [data-theme="dark"] .task-row { border-color:rgba(148,163,184,0.12); background:#0f172a; }
+[data-theme="dark"] .task-row.expired { background:#3f1d1d; border-color:#7f1d1d; }
+[data-theme="dark"] .task-row.due-today { background:#3b2a1a; border-color:#8b5e34; }
 [data-theme="dark"] .task-date { color:#94a3b8; }
 [data-theme="dark"] .task-text { color:#e2e8f0; }
 [data-theme="dark"] .status-pendiente { background:#7c2d12; color:#fff7ed; border-color:#f59e0b; }
