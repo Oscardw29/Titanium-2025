@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanium - Inicio</title>
+    <link rel="icon" href="assets/TT__1_-removebg-preview.png">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/drawer.js" defer></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/main.js" defer></script>
+    <script src="js/theme.js" defer></script>
+</head>
+<body>
+    <header role="banner">
+    <div class="header">
+      <a class="brand" href="index.html" aria-label="Ir al inicio">
+        <img src="assets/TT__1_-removebg-preview.png" alt="Titanium logo">
+        <span class="brand-text">Titanium</span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="agenda.html">Agenda</a>
+        <a href="tareas.html">Deberes</a>
+        <a href="recordatorios.html">Recordatorios</a>
+      </nav>
+    </div>
+  </header>
+  <main class="landing" role="main">
+    <section class="landing-inner">
+      <h1 class="landing-title">
+        <span class="title-line">Bienvenido a</span>
+        <span class="title-brand">Titanium</span>
+      </h1>
+      <p class="landing-desc">
+        Titanium te ayuda a mantener el control de tus tareas, exámenes y compromisos escolares.
+        Recibe recordatorios automáticos y logra una mejor organización cada día.
+      </p>
+      
+      <!-- Carrusel de imágenes -->
+      <div class="carousel-container">
+        <div class="carousel">
+          <div class="carousel-slide" data-index="0">
+            <img src="assets/escuela-de-trabajo-con-libros-en-el-aula.jpg" alt="Espacio de estudio con libros">
+          </div>
+          <div class="carousel-slide" data-index="1">
+            <img src="assets/joven-escribiendo-en-un-cuaderno-durante-la-sesion-de-estudio.jpg" alt="Estudiante tomando notas">
+          </div>
+          <div class="carousel-slide" data-index="2">
+            <img src="assets/mujer-embarazada-sonriente-sosteniendo-el-portapapeles-y-apuntando-hacia-arriba.jpg" alt="Organización y planificación">
+          </div>
+        </div>
+      </div>
+      
+      <button id="startBtn" class="cta-btn" type="button">¡Empezar!</button>
+    </section>
+    
+    <!-- Sección informativa: ¿Quiénes somos? -->
+    <section class="about-section" aria-labelledby="about-title">
+      <div class="about-container">
+        <h2 id="about-title">¿Quiénes somos?</h2>
+        <p class="about-lead">
+          Titanium es una plataforma web diseñada especialmente para estudiantes. Te permite registrar tus tareas,
+          compromisos y exámenes, recibir notificaciones automáticas y marcar tus pendientes como completados.
+        </p>
+        <p class="about-quote">“Nuestra meta es ayudarte a desarrollar hábitos de estudio más organizados, eficientes y libres de estrés”.</p>
+      </div>
+    </section>
+
+    <!-- Sección de características (cartas dinámicas) -->
+    <section class="features-section" aria-labelledby="features-title">
+      <div class="features-container">
+        <h2 id="features-title" class="sr-only">Secciones principales</h2>
+        <div class="cards-grid">
+          <a class="feature-card">
+            <h3>Agenda</h3>
+            <p>
+              Organiza tu semana con facilidad. Visualiza todos tus compromisos académicos en un solo lugar:
+              tareas, exámenes y actividades. Tu tiempo bajo control, siempre.
+            </p>
+          </a>
+          <a class="feature-card">
+            <h3>Deberes</h3>
+            <p>
+              Registra tus tareas y proyectos pendientes. Agrega, edita o elimina deberes fácilmente y márcalos como
+              completados cuando los termines. ¡Mantén tu lista siempre al día!
+            </p>
+          </a>
+          <a class="feature-card">
+            <h3>Recordatorios</h3>
+            <p>
+              Activa recordatorios automáticos que te avisarán con anticipación sobre tus actividades importantes.
+              Titanium se encarga de recordarte lo que importa.
+            </p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer role="contentinfo">
+    <div class="footer">
+      <p class="footer-info">Contactanos</p>
+      <a href="tel:+573136872953" class="footer-contact">+57 3136872953</a>
+      <a href="mailto:oscarwis2009@gmail.com" class="footer-contact">oscarwis2009@gmail.com</a>
+      <p class="footer-copyright">© 2025 Titanium. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>

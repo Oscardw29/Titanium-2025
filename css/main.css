@@ -1,0 +1,484 @@
+/* Styles exclusive to main (landing) page */
+
+/* Use the body's flex layout from index.css. This section becomes the flex child that grows. */
+.landing {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column; /* apilar secciones verticalmente */
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px 80px; /* extra bottom spacing above footer */
+  background: #eef2f7; /* light background similar to the screenshot */
+}
+
+.landing-inner {
+  text-align: center;
+  max-width: 960px;
+}
+
+.landing-title {
+  margin: 0 0 32px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* first line */
+.landing-title .title-line {
+  display: block;
+  font-weight: 800;
+  color: #0f172a; /* slate-900 */
+  font-size: clamp(1.6rem, 2.2rem + 2vw, 3.25rem);
+}
+
+/* brand line */
+.landing-title .title-brand {
+  display: block;
+  margin-top: 6px;
+  font-weight: 900;
+  color: #0f172a;
+  font-size: clamp(2.2rem, 3rem + 3vw, 4.25rem);
+}
+
+/* description with top/bottom divider lines */
+.landing-desc {
+  margin: 18px auto 28px;
+  padding: 22px 18px;
+  color: #0f172a;
+  font-weight: 500;
+  line-height: 1.75;
+  background: transparent;
+  border-top: 3px solid #d8dee9;
+  border-bottom: 3px solid #d8dee9;
+  max-width: 1000px;
+}
+
+/* call-to-action - Dynamic button with animations */
+.cta-btn {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(135deg, #12323f 0%, #1a4a5a 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 40px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(18, 50, 63, 0.35);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  z-index: 1;
+  animation: pulse-glow 2s ease-in-out infinite;
+  width: 200px;
+}
+
+@media (max-width: 768px) {
+  .cta-btn {
+    padding: 14px 32px;
+    font-size: 1rem;
+    width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-btn {
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    width: 160px;
+  }
+}
+
+/* Animated gradient overlay */
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+/* Hover shine effect */
+.cta-btn:hover::before {
+  left: 100%;
+}
+
+.cta-btn:hover { 
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 32px rgba(59, 130, 246, 0.45);
+}
+
+.cta-btn:active { 
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
+}
+
+/* Subtle pulsing glow animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 8px 24px rgba(18, 50, 63, 0.35);
+  }
+  50% {
+    box-shadow: 0 8px 28px rgba(18, 50, 63, 0.45), 0 0 20px rgba(59, 130, 246, 0.2);
+  }
+}
+
+/* Floating animation on hover */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(-4px) scale(1.05);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.05);
+  }
+}
+
+/* Ripple effect on click */
+.cta-btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: ripple-animation 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* ===== CARRUSEL DE IMÁGENES ===== */
+.carousel-container {
+  position: relative;
+  max-width: 1000px;
+  width: 100%;
+  margin: 40px auto 50px;
+  overflow: visible;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 400px;
+  perspective: 1000px;
+}
+
+.carousel-slide {
+  position: relative;
+  flex-shrink: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  width: 280px;
+  height: 280px;
+  opacity: 0.6;
+  transform: scale(0.85) translateY(0);
+  z-index: 1;
+}
+
+/* Slide central activa (grande) */
+.carousel-slide.center {
+  width: 450px;
+  height: 380px;
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  z-index: 10;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+}
+
+/* Slides laterales */
+.carousel-slide.left {
+  transform: scale(0.85) translateX(30px);
+  z-index: 5;
+}
+
+.carousel-slide.right {
+  transform: scale(0.85) translateX(-30px);
+  z-index: 5;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s ease;
+}
+
+.carousel-slide.center img {
+  transform: scale(1.05);
+}
+
+/* Efecto hover opcional */
+.carousel-slide:hover {
+  opacity: 0.85;
+}
+
+.carousel-slide.center:hover {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .carousel {
+    height: 320px;
+    gap: 15px;
+  }
+  
+  .carousel-slide {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .carousel-slide.center {
+    width: 350px;
+    height: 300px;
+  }
+  
+  .carousel-slide.left,
+  .carousel-slide.right {
+    transform: scale(0.8) translateX(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .landing { padding: 40px 14px 60px; }
+  .landing-desc { padding: 16px 12px; }
+  
+  .carousel {
+    height: 250px;
+    gap: 10px;
+  }
+  
+  .carousel-slide {
+    width: 120px;
+    height: 150px;
+  }
+  
+  .carousel-slide.center {
+    width: 220px;
+    height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing { padding: 30px 12px 50px; }
+  .landing-desc { 
+    padding: 14px 10px; 
+    font-size: 0.95rem;
+  }
+  
+  .carousel {
+    height: 230px;
+    gap: 8px;
+  }
+  
+  .carousel-slide {
+    width: 100px;
+    height: 130px;
+  }
+  
+  .carousel-slide.center {
+    width: 200px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 380px) {
+  .landing { padding: 25px 10px 45px; }
+  
+  .carousel {
+    height: 210px;
+  }
+  
+  .carousel-slide {
+    width: 90px;
+    height: 120px;
+  }
+  
+  .carousel-slide.center {
+    width: 180px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 320px) {
+  .landing { padding: 20px 8px 40px; }
+  .landing-desc { 
+    padding: 12px 8px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
+  .carousel-container {
+    margin: 30px auto 40px;
+  }
+  
+  .carousel {
+    height: 190px;
+    gap: 6px;
+  }
+  
+  .carousel-slide {
+    width: 75px;
+    height: 100px;
+  }
+  
+  .carousel-slide.center {
+    width: 160px;
+    height: 180px;
+  }
+}
+
+  /* ===== About / Quiénes somos ===== */
+  .about-section {
+    align-self: stretch; /* ocupar ancho completo dentro del main flex */
+    width: 100%;
+    background: #ffffff; /* separación en blanco */
+    margin-top: 40px;
+    border-top: 1px solid rgba(15,23,42,0.06);
+    border-bottom: 1px solid rgba(15,23,42,0.06);
+  }
+
+  .about-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px 40px;
+  }
+
+  .about-section h2 {
+    margin: 0 0 18px 0;
+    color: #0f172a;
+    letter-spacing: 0.06em;
+    font-weight: 800;
+    font-size: clamp(1.5rem, 1.8rem + 1vw, 2.2rem);
+  }
+
+  .about-lead {
+    margin: 12px 0 16px;
+    color: #0f172a;
+    font-style: italic;
+    line-height: 1.9;
+    font-size: clamp(0.95rem, 1rem + 0.2vw, 1.1rem);
+  }
+
+  .about-quote {
+    margin: 10px 0 0;
+    color: #334155;
+    font-style: italic;
+    font-size: clamp(0.9rem, 0.95rem + 0.2vw, 1.05rem);
+  }
+
+  @media (max-width: 700px) {
+    .about-container { padding: 24px 14px 30px; }
+    .about-section { margin-top: 30px; }
+  }
+
+  @media (max-width: 480px) {
+    .about-container { padding: 20px 12px 24px; }
+    .about-section { margin-top: 20px; }
+  }
+
+  /* ===== Features cards ===== */
+  .features-section {
+    align-self: stretch;
+    width: 100%;
+    background: transparent; /* sobre el gris del fondo */
+    padding: 34px 0 10px;
+  }
+
+  .features-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .sr-only {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0);
+    white-space: nowrap; border: 0;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .feature-card {
+    display: block;
+    background: #f4f7fb;
+    border: 1px solid rgba(15,23,42,0.08);
+    border-radius: 22px;
+    padding: 28px 26px;
+    color: #0f172a;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+    transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease, border-color 220ms ease;
+  }
+
+  .feature-card h3 {
+    margin: 0 0 14px 0;
+    font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.4rem);
+    font-weight: 800;
+  }
+
+  .feature-card p {
+    margin: 0;
+    font-size: clamp(0.95rem, 1rem + 0.1vw, 1.05rem);
+    line-height: 1.9;
+    color: #334155;
+  }
+
+  .feature-card:hover, .feature-card:focus-visible {
+    transform: translateY(-6px);
+    background: #ffffff;
+    border-color: rgba(59,130,246,0.30);
+    box-shadow: 0 12px 30px rgba(15,23,42,0.12);
+    outline: none;
+  }
+
+  @media (max-width: 1000px) {
+    .cards-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .features-section { padding: 28px 0 8px; }
+    .features-container { padding: 0 16px; }
+    .cards-grid { gap: 20px; }
+    .feature-card { padding: 24px 20px; border-radius: 18px; }
+  }
+
+  @media (max-width: 640px) {
+    .cards-grid { grid-template-columns: 1fr; gap: 18px; }
+    .feature-card { padding: 22px 18px; border-radius: 16px; }
+  }
+
+  @media (max-width: 480px) {
+    .features-section { padding: 20px 0 6px; }
+    .features-container { padding: 0 12px; }
+    .cards-grid { gap: 16px; }
+    .feature-card { padding: 20px 16px; border-radius: 14px; }
+  }
+
+  /* ===== Dark theme: landing explicit text colors ===== */
+  [data-theme="dark"] .landing-title .title-line,
+  [data-theme="dark"] .landing-title .title-brand { color:#e5e7eb; }
+  [data-theme="dark"] .landing-desc { color:#e2e8f0; border-top-color: rgba(148,163,184,0.22); border-bottom-color: rgba(148,163,184,0.22); }
+  [data-theme="dark"] .feature-card h3 { color:#e5e7eb; }
+  [data-theme="dark"] .carousel-slide { box-shadow: 0 10px 28px rgba(0,0,0,0.55); }
+

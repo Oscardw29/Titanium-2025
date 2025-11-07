@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Titanium - Recordatorios</title>
+  <link rel="stylesheet" href="css/recordatorios.css">
+  <link rel="stylesheet" href="css/index.css">
+  <script src="js/drawer.js" defer></script>
+  <script src="js/recordatorios.js" defer></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/theme.js" defer></script>
+</head>
+<body>
+      <header role="banner">
+    <div class="header">
+      <a class="brand" href="index.html" aria-label="Ir al inicio">
+        <img src="assets/TT__1_-removebg-preview.png" alt="Titanium logo">
+        <span class="brand-text">Titanium</span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+  <a href="index.html">Inicio</a>
+        <a href="agenda.html">Agenda</a>
+        <a href="tareas.html">Deberes</a>
+        <a href="recordatorios.html">Recordatorios</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>Recordatorios</h1>
+      
+      <div class="reminder-form">
+        <div class="form-group">
+          <label for="reminderTitle">Título</label>
+          <input type="text" id="reminderTitle" placeholder="Título del recordatorio">
+        </div>
+        <div class="form-group">
+          <label for="reminderMessage">Mensaje</label>
+          <textarea id="reminderMessage" rows="3" placeholder="Mensaje del recordatorio"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="reminderTime">Hora</label>
+          <input type="datetime-local" id="reminderTime">
+        </div>
+        <div class="form-group">
+          <label for="initialNotification">Primera notificación en</label>
+          <select id="initialNotification">
+            <option value="1">1 minuto</option>
+            <option value="5">5 minutos</option>
+            <option value="15">15 minutos</option>
+            <option value="30">30 minutos</option>
+            <option value="60">1 hora</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="repeatInterval">Repetir cada</label>
+          <select id="repeatInterval">
+            <option value="8">8 horas</option>
+            <option value="24">24 horas</option>
+            <option value="168">1 semana</option>
+            <option value="0">No repetir</option>
+          </select>
+        </div>
+        <button class="button-primary" onclick="addReminder()">Agregar Recordatorio</button>
+      </div>
+
+      <div class="reminder-list" id="reminderList"></div>
+    </div>
+    <div id="notificationContainer" class="notification-container" aria-live="polite" aria-atomic="true"></div>
+  </main>
+  
+  <footer role="contentinfo">
+    <div class="footer">
+      <p class="footer-info">Contactanos</p>
+      <a href="tel:+573136872953" class="footer-contact">+57 3136872953</a>
+      <a href="mailto:oscarwis2009@gmail.com" class="footer-contact">oscarwis2009@gmail.com</a>
+      <p class="footer-copyright">© 2025 Titanium. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

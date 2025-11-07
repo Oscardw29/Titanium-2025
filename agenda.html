@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Titanium - Agenda</title>
+  <link rel="icon" href="assets/TT__1_-removebg-preview.png">
+  <link rel="stylesheet" href="css/index.css">
+  <script src="js/notify.js" defer></script>
+  <script src="js/drawer.js" defer></script>
+  <script src="js/index.js" defer></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/theme.js" defer></script>
+</head>
+<body>
+  <header role="banner">
+    <div class="header">
+      <a class="brand" href="index.html" aria-label="Ir al inicio">
+        <img src="assets/TT__1_-removebg-preview.png" alt="Titanium logo">
+        <span class="brand-text">Titanium</span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+  <a href="index.html">Inicio</a>
+        <a href="agenda.html">Agenda</a>
+        <a href="tareas.html">Deberes</a>
+        <a href="recordatorios.html">Recordatorios</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <h1>Agenda</h1>
+      <div class="calendar-header">
+        <button id="prevMonth">← Mes anterior</button>
+        <h2 id="monthYear"></h2>
+        <button id="nextMonth">Mes siguiente →</button>
+      </div>
+      <div class="center-controls" style="text-align:center; margin-bottom:10px;">
+        <button id="todayBtn">Ir al día de hoy</button>
+        <button id="downloadBtn">Descargar tareas</button>
+      </div>
+      <div class="calendar" id="calendar"></div>
+      <div class="task-list" id="taskList">
+        <h3 id="selectedDate"></h3>
+        <div id="tasks"></div>
+        <div class="add-task">
+          <input type="text" id="newTask" placeholder="Nueva tarea...">
+          <button id="addTaskBtn">Añadir</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div id="notificationContainer" class="notification-container" aria-live="polite" aria-atomic="true"></div>
+  
+  <footer role="contentinfo">
+    <div class="footer">
+      <p class="footer-info">Contactanos</p>
+      <a href="tel:+573136872953" class="footer-contact">+57 3136872953</a>
+      <a href="mailto:oscarwis2009@gmail.com" class="footer-contact">oscarwis2009@gmail.com</a>
+      <p class="footer-copyright">© 2025 Titanium. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>
