@@ -293,6 +293,9 @@ function addReminderToAgenda(title, timeString) {
     };
 }
 
+    // Exponer addReminder globalmente para que funcione con onclick
+    window.addReminder = addReminder;
+
 function deleteReminder(id) {
     const timeout = notificationTimeouts.get(id);
     if (timeout) {
