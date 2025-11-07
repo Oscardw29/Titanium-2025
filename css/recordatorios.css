@@ -105,9 +105,7 @@ h1 {
 .reminder-actions .delete-btn { background:#ef4444 }
 .reminder-actions .delete-btn::before { content:'🗑️' }
 .reminder-actions .delete-btn:hover { background:#dc2626 }
-.reminder-actions .test-btn { background:#22c55e }
-.reminder-actions .test-btn::before { content:'🔔' }
-.reminder-actions .test-btn:hover { background:#16a34a }
+/* Botón de prueba eliminado */
 
 .reminder-badge { display:inline-block; padding:4px 8px; border-radius:999px; font-size:0.85em; font-weight:500; margin-top:8px }
 .reminder-badge.repeat { background:#f0fdf4; color:#166534; border:1px solid #bbf7d0 }

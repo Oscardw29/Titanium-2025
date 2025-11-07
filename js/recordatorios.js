@@ -470,7 +470,6 @@ function renderReminders() {
                     `<div class="reminder-badge task">Desde Agenda</div>` : ''}
             </div>
             <div class="reminder-actions">
-                    <button onclick="testReminder(${reminder.id})" class="test-btn">Probar</button>
                 <button onclick="deleteReminder(${reminder.id})" class="delete-btn">Eliminar</button>
             </div>
         `;
@@ -479,15 +478,7 @@ function renderReminders() {
 }
 
 // Botón de prueba por recordatorio (global para onclick)
-window.testReminder = function(id){
-    const r = reminders.find(x=>x.id===id);
-    if(!r) return;
-    showSystemNotification(`Prueba: ${r.title}`, r.message || 'Notificación de prueba', {
-        icon: 'assets/TT__1_-removebg-preview.png',
-        duration: 5000,
-        tag: 'reminder-test-' + id
-    });
-};
+// (Botón de prueba eliminado)
 
 // Inicialización
 window.addEventListener('load', () => {
